@@ -26,10 +26,28 @@ def part_one() -> int:
                 sum -= int(line[1:])
     return sum
 
+def part_two() -> int:
+    current_value = 0
+    frequencies = []
+    problem_one_ref = PATH_REFS / 'problem1.txt'
+    with problem_one_ref.open('r') as infile:
+        lines = infile.readlines()
+        while True:
+            for line in lines:
+                if line[0] == '+':
+                    current_value += int(line[1:])
+                else:
+                    current_value -= int(line[1:])
+                if current_value in frequencies:
+                    return current_value
+                else:
+                    frequencies.append(current_value)
+
 
 def main() -> int:
     """House the logic for this problem"""
     print('Solution to part one is: {}'.format(part_one()))
+    print('Solution to part two is: {}'.format(part_two()))
 
     return 0
 
