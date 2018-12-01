@@ -1,6 +1,18 @@
+"""
+### Code Owner: Alexander Olivero
+
+### Objective:
+    House the logic to solve problem 1
+
+### Developer Notes:
+    Data found here: https://adventofcode.com/2018/day/1/input
+"""
 from pathlib import Path
 
 PATH_REFS = Path(__file__).parents[1] / 'references'
+
+#-----------------------------------------------------------#
+#-----------------------------------------------------------#
 
 def part_one() -> int:
     """Calculate the solution to part one"""
