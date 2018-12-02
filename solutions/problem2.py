@@ -25,8 +25,8 @@ def part_one() -> int:
     """Calculate the solution for part one"""
     two_count = 0
     three_count = 0
-    problem_one_ref = PATH_REFS / 'problem2.txt'
-    with problem_one_ref.open('r') as infile:
+    problem_two_ref = PATH_REFS / 'problem2.txt'
+    with problem_two_ref.open('r') as infile:
         for line in infile.readlines():
             if check_letter_count(line.strip(), 2):
                 two_count += 1
