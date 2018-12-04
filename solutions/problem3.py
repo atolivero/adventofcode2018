@@ -16,7 +16,7 @@ PATH_REFS = Path(__file__).parents[1] / 'references'
 #-----------------------------------------------------------#
 
 
-def part_one(sections: dict, sheet: list) -> int:
+def part_one(sections: dict, sheet: list) -> tuple:
     """Calculate the solution for part one"""
     for section_id, info in sections.items():
         for x in range(info['x_coord'], info['x_coord'] + info['x_dim']):
@@ -32,12 +32,19 @@ def part_one(sections: dict, sheet: list) -> int:
             if sheet[x][y] == 'X':
                 count += 1
     
-    return count
+    return count, sheet
 
 
-def part_two() -> str:
+def part_two(sections: dict, sheet: list) -> str:
     """Calculate the solution for part two"""
-    return None
+    for section_id, info in sections.items():
+        error_check = True
+        for x in range(info['x_coord'], info['x_coord'] + info['x_dim']):
+            for y in range(info['y_coord'], info['y_coord'] + info['y_dim']):
+                if sheet[x][y] != section_id:
+                    error_check = False
+        if error_check:
+            return section_id
 
 
 def main() -> int:
@@ -55,8 +62,10 @@ def main() -> int:
           'y_dim': int(re.findall('\d+x\d+', line)[0].split('x')[1])
       }
     
-    print('Solution to part one is: {}'.format(part_one(sections, sheet)))
-    print('Solution to part two is: {}'.format(part_two()))
+    part_one_solution = part_one(sections, sheet)
+    
+    print('Solution to part one is: {}'.format(part_one_solution[0]))
+    print('Solution to part two is: {}'.format(part_two(sections, part_one_solution[1])))
 
     return 0
 
