@@ -28,9 +28,17 @@ def part_one(line: str) -> int:
     return len(line)
 
 
-def part_two(sections: dict, sheet: list) -> str:
+def part_two(line: str) -> int:
     """Calculate the solution for part two"""
-    return
+    alphabet = []
+    for letter in range(97, 123):
+        alphabet.append(chr(letter))
+
+    solution_dict = dict()
+    for letter in alphabet:
+        solution_dict[letter] = part_one(line.replace(letter, '').replace(letter.upper(), ''))
+
+    return sorted(solution_dict.items(), key=lambda x: x[1])[0][1]
 
 
 def main() -> int:
@@ -40,7 +48,7 @@ def main() -> int:
     line = infile.readline().strip():
     
     print('Solution to part one is: {}'.format(part_one(line))
-    print('Solution to part two is: {}'.format(part_two()))
+    print('Solution to part two is: {}'.format(part_two(line)))
 
     return 0
 
