@@ -8,7 +8,7 @@
     Data found here: https://adventofcode.com/2018/day/3/input
 """
 from pathlib import Path
-from difflib import ndiff
+import re
 
 PATH_REFS = Path(__file__).parents[1] / 'references'
 
@@ -55,12 +55,12 @@ def main() -> int:
     problem_two_ref = PATH_REFS / 'problem3.txt'
     with problem_two_ref.open('r') as infile:
       for line in infile.readlines():
-      sections[re.findall('#\d+', line)[0]] = {
-          'x_coord': int(re.findall('\d+,\d+', line)[0].split(',')[0]),
-          'y_coord': int(re.findall('\d+,\d+', line)[0].split(',')[1]),
-          'x_dim': int(re.findall('\d+x\d+', line)[0].split('x')[0]),
-          'y_dim': int(re.findall('\d+x\d+', line)[0].split('x')[1])
-      }
+          sections[re.findall('#\d+', line)[0]] = {
+              'x_coord': int(re.findall('\d+,\d+', line)[0].split(',')[0]),
+              'y_coord': int(re.findall('\d+,\d+', line)[0].split(',')[1]),
+              'x_dim': int(re.findall('\d+x\d+', line)[0].split('x')[0]),
+              'y_dim': int(re.findall('\d+x\d+', line)[0].split('x')[1])
+          }
     
     part_one_solution = part_one(sections, sheet)
     
